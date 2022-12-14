@@ -11,7 +11,7 @@ using OnlineShop.Api.Data;
 namespace OnlineShop.Api.Migrations
 {
     [DbContext(typeof(OnlineShopDbContext))]
-    [Migration("20221208180820_InitialCreate")]
+    [Migration("20221213232002_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -159,7 +159,7 @@ namespace OnlineShop.Api.Migrations
                             Amount = 580,
                             CategoryId = 1,
                             Description = "Пикантная пепперони, увеличенная порция моцареллы, фирменный томатный соус",
-                            ImageURL = "/Images/Pizza/HamAndCheese.png",
+                            ImageURL = "/Images/Pizza/Pepperoni.png",
                             Name = "Пепперони",
                             Price = 629m
                         },

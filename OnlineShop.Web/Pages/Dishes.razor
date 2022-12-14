@@ -1,0 +1,27 @@
+﻿@page "/"
+@inherits DishesBase
+
+@if (Dishes == null)
+{
+    <h3>Loading dishes...</h3>
+}
+else
+{
+    <h3 class="mb-5">Dishes</h3>
+
+    var dishesCount = Dishes.Count();
+
+    if (dishesCount > 0)
+    {
+        @foreach (var dishGroup in GetGroupedDishesByCategory())
+        {
+            <h4>@GetCategoryName(dishGroup)</h4>
+
+            <div class="row mt-3">
+                <DisplayDishes Dishes="@dishGroup.Take(4)"></DisplayDishes>
+            </div>
+
+            <hr class="mb-3"/>
+        }
+    }
+}

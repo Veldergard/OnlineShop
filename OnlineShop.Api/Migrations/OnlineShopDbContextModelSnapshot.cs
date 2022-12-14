@@ -156,7 +156,7 @@ namespace OnlineShop.Api.Migrations
                             Amount = 580,
                             CategoryId = 1,
                             Description = "Пикантная пепперони, увеличенная порция моцареллы, фирменный томатный соус",
-                            ImageURL = "/Images/Pizza/HamAndCheese.png",
+                            ImageURL = "/Images/Pizza/Pepperoni.png",
                             Name = "Пепперони",
                             Price = 629m
                         },
