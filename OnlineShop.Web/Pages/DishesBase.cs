@@ -10,9 +10,18 @@ public class DishesBase : ComponentBase
 
     public IEnumerable<DishDto> Dishes { get; set; }
 
+    public string ErrorMessage { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        Dishes = await DishService.GetItems();
+        try
+        {
+            Dishes = await DishService.GetItems();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
     }
 
     protected IOrderedEnumerable<IGrouping<int, DishDto>> GetGroupedDishesByCategory()

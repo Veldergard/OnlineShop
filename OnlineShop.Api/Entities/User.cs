@@ -1,8 +1,7 @@
-﻿namespace OnlineShop.Api.Entities
+﻿namespace OnlineShop.Api.Entities;
+
+public class User
 {
-	public class User
-	{
-		public int Id { get; set; }
-		public string UserName { get; set; }
-	}
+    public int Id { get; set; }
+    public string UserName { get; set; }
 }

@@ -3,35 +3,34 @@ using OnlineShop.Api.Data;
 using OnlineShop.Api.Entities;
 using OnlineShop.Api.Repositories.Contracts;
 
-namespace OnlineShop.Api.Repositories
+namespace OnlineShop.Api.Repositories;
+
+public class DishRepository : IDishRepository
 {
-	public class DishRepository : IDishRepository
-	{
-		private readonly OnlineShopDbContext onlineShopDbContext;
+    private readonly OnlineShopDbContext onlineShopDbContext;
 
-		public DishRepository(OnlineShopDbContext onlineShopDbContext)
-		{
-			this.onlineShopDbContext = onlineShopDbContext;
-		}
+    public DishRepository(OnlineShopDbContext onlineShopDbContext)
+    {
+        this.onlineShopDbContext = onlineShopDbContext;
+    }
 
-		public async Task<IEnumerable<DishCategory>> GetCategories()
-		{
-			return await this.onlineShopDbContext.DishCategories.ToListAsync();
-		}
+    public async Task<IEnumerable<DishCategory>> GetCategories()
+    {
+        return await onlineShopDbContext.DishCategories.ToListAsync();
+    }
 
-		public Task<DishCategory> GetCategory(int id)
-		{
-			throw new NotImplementedException();
-		}
+    public async Task<DishCategory> GetCategory(int id)
+    {
+        return await onlineShopDbContext.DishCategories.SingleOrDefaultAsync(c => c.Id == id);
+    }
 
-		public Task<Dish> GetItem(int id)
-		{
-			throw new NotImplementedException();
-		}
+    public async Task<Dish> GetItem(int id)
+    {
+        return await onlineShopDbContext.Dishes.FindAsync(id);
+    }
 
-		public async Task<IEnumerable<Dish>> GetItems()
-		{
-			return await this.onlineShopDbContext.Dishes.ToListAsync();
-		}
-	}
+    public async Task<IEnumerable<Dish>> GetItems()
+    {
+        return await onlineShopDbContext.Dishes.ToListAsync();
+    }
 }

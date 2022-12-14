@@ -1,9 +1,13 @@
 ﻿@page "/"
 @inherits DishesBase
 
-@if (Dishes == null)
+@if (Dishes == null && ErrorMessage == null)
 {
-    <h3>Loading dishes...</h3>
+    <DisplaySpinner/>
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
 }
 else
 {

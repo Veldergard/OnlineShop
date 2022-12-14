@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContextPool<OnlineShopDbContext>(options =>
-	options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopConnection"))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopConnection"))
 );
 
 builder.Services.AddScoped<IDishRepository, DishRepository>();
@@ -24,14 +24,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseCors(policy =>
-	policy.WithOrigins("http://localhost:7062", "https://localhost:7062")
-	.AllowAnyMethod()
-	.WithHeaders(HeaderNames.ContentType)
+    policy.WithOrigins("http://localhost:7062", "https://localhost:7062")
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType)
 );
 
 app.UseHttpsRedirection();
