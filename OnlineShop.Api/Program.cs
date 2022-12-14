@@ -18,6 +18,7 @@ builder.Services.AddDbContextPool<OnlineShopDbContext>(options =>
 );
 
 builder.Services.AddScoped<IDishRepository, DishRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 var app = builder.Build();
 

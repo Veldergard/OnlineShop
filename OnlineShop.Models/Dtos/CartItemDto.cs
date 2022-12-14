@@ -3,8 +3,8 @@
 public class CartItemDto
 {
     public int Id { get; set; }
-    public int ProductId { get; set; }
     public int CartId { get; set; }
+    public int DishId { get; set; }
     public string DishName { get; set; }
     public string DishDescription { get; set; }
     public string DishImageURL { get; set; }

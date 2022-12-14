@@ -39,4 +39,41 @@ public static class DtoConversions
             CategoryName = dishCategory.Name
         };
     }
+
+    public static IEnumerable<CartItemDto> ConvertToDto(this IEnumerable<CartItem> cartItems,
+        IEnumerable<Dish> dishes)
+    {
+        return (from cartItem in cartItems
+            join dish in dishes
+                on cartItem.DishId equals dish.Id
+            select new CartItemDto
+            {
+                Id = cartItem.Id,
+                CartId = cartItem.CartId,
+                DishId = cartItem.DishId,
+                DishName = dish.Name,
+                DishDescription = dish.Description,
+                DishImageURL = dish.ImageURL,
+                Price = dish.Price,
+                Amount = cartItem.Amount,
+                TotalPrice = dish.Price * cartItem.Amount
+            }).ToList();
+    }
+
+    public static CartItemDto ConvertToDto(this CartItem cartItem,
+        Dish dish)
+    {
+        return new CartItemDto
+        {
+            Id = cartItem.Id,
+            CartId = cartItem.CartId,
+            DishId = cartItem.DishId,
+            DishName = dish.Name,
+            DishDescription = dish.Description,
+            DishImageURL = dish.ImageURL,
+            Price = dish.Price,
+            Amount = cartItem.Amount,
+            TotalPrice = dish.Price * cartItem.Amount
+        };
+    }
 }
