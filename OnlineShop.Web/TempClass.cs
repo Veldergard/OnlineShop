@@ -1,0 +1,7 @@
+﻿namespace OnlineShop.Web;
+
+public class TempClass
+{
+    public const int UserId = 1;
+    public const int CartId = 1;
+}

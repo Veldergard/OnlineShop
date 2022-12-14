@@ -10,6 +10,10 @@ public class DishDetailsBase : ComponentBase
 
     [Inject] public IDishService DishService { get; set; }
 
+    [Inject] public IShoppingCartService ShoppingCartService { get; set; }
+
+    [Inject] public NavigationManager NavigationManager { get; set; }
+
     public DishDto Dish { get; set; }
 
     public string ErrorMessage { get; set; }
@@ -24,5 +28,11 @@ public class DishDetailsBase : ComponentBase
         {
             ErrorMessage = ex.Message;
         }
+    }
+
+    protected async Task AddToCart_Click(CartItemToAddDto cartItemToAddDto)
+    {
+        var cartItemDto = await ShoppingCartService.AddItem(cartItemToAddDto);
+        NavigationManager.NavigateTo("/ShoppingCart");
     }
 }

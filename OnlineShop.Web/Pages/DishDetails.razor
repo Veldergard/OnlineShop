@@ -25,7 +25,8 @@ else
                 </b>
             </p>
             <div>
-                <button class="btn btn-success">
+                <button class="btn btn-success"
+                        @onclick="() => AddToCart_Click(new CartItemToAddDto { CartId = TempClass.CartId, DishId = Dish.Id, Amount = 1 })">
                     <b>Добавить в корзину</b>
                 </button>
             </div>
