@@ -1,5 +1,5 @@
 # Веб-сайт пиццерии <a href="https://veldergard.youtrack.cloud/"></a>
-![image](https://img.shields.io/badge/Task_Manager-Youtrack-green)
+[![image](https://img.shields.io/badge/Task_Manager-Youtrack-green)](https://veldergard.youtrack.cloud/)
 
 Учебный проект сайта с использованием WebAPI и Blazor WASM.
 
