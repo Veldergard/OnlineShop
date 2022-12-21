@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
+using System.Text;
+using Newtonsoft.Json;
 using OnlineShop.Models.Dtos;
 using OnlineShop.Web.Services.Contracts;
 
@@ -51,5 +53,17 @@ public class ShoppingCartService : IShoppingCartService
 
         var message = await response.Content.ReadAsStringAsync();
         throw new Exception($"Http status code: {response.StatusCode} Message: {message}");
+    }
+
+    public async Task<CartItemDto> UpdateAmount(CartItemAmountUpdateDto cartItemAmountUpdateDto)
+    {
+        var jsonRequest = JsonConvert.SerializeObject(cartItemAmountUpdateDto);
+        var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json-patch+json");
+
+        var response = await httpClient.PatchAsync($"api/ShoppingCart/{cartItemAmountUpdateDto.CartItemId}", content);
+
+        if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<CartItemDto>();
+
+        return null;
     }
 }

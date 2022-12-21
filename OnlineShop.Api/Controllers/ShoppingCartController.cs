@@ -112,4 +112,25 @@ public class ShoppingCartController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
+
+    [HttpPatch("{id:int}")]
+    public async Task<ActionResult<CartItemDto>> UpdateAmount(int id, CartItemAmountUpdateDto cartItemAmountUpdateDto)
+    {
+        try
+        {
+            var cartItem = await shoppingCartRepository.UpdateAmount(id, cartItemAmountUpdateDto);
+
+            if (cartItem == null) return NotFound();
+
+            var dish = await dishRepository.GetItem(cartItem.DishId);
+
+            var cartItemDto = cartItem.ConvertToDto(dish);
+
+            return Ok(cartItemDto);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
 }

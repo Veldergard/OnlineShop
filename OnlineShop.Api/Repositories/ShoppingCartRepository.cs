@@ -83,9 +83,18 @@ public class ShoppingCartRepository : IShoppingCartRepository
             }).ToListAsync();
     }
 
-    public Task<CartItem> UpdateAmount(int id, CartItemAmountUpdateDto cartItemAmountUpdateDto)
+    public async Task<CartItem> UpdateAmount(int id, CartItemAmountUpdateDto cartItemAmountUpdateDto)
     {
-        throw new NotImplementedException();
+        var item = await onlineShopDbContext.CartItems.FindAsync(id);
+
+        if (item != null)
+        {
+            item.Amount = cartItemAmountUpdateDto.Amount;
+            await onlineShopDbContext.SaveChangesAsync();
+            return item;
+        }
+
+        return null;
     }
 
     private async Task<bool> CartItemExists(int cartId, int dishId)

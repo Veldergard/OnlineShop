@@ -25,7 +25,15 @@ else
                         <div class="col-md-8">
                             <h5>@item.DishName</h5>
                             <div class="mb-4">@item.DishDescription</div>
-                            <span>Цена: <b>@item.Price.ToString("C")</b></span>
+                            <span>
+                                Цена: <b>@item.Price.ToString("C")</b>
+                                <input @oninput="() => UpdateAmount_Input(item.Id)"
+                                       type="number" @bind="@item.Amount"/>
+                                <button data-itemId="@item.Id" class="btn btn-info btn-sm update-amount"
+                                        @onclick="() => UpdateAmountCartItem_Click(item.Id, item.Amount)">
+                                    Обновить количество
+                                </button>
+                            </span>
                             <div>
                                 <button @onclick="() => DeleteCartItem_Click(item.Id)" class="btn btn-danger sm">
                                     <i class="fa-solid fa-trash"></i>
@@ -38,7 +46,7 @@ else
             <div class="col-md-3">
                 <h5>Общая стоимость</h5>
                 <div class="mt-2">
-                    <div>Всего - </div>
+                    <div>Всего - (@TotalAmount блюд)&nbsp;<b>@TotalPrice</b></div>
                     <a href="#" class="btn btn-success">
                         <span class="oi oi-credit-card"></span>&nbsp; Оплатить
                     </a>
