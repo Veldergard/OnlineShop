@@ -16,6 +16,8 @@ public class ShoppingCartService : IShoppingCartService
         this.httpClient = httpClient;
     }
 
+    public event Action<int> OnShoppingCartChanged;
+
     public async Task<CartItemDto> AddItem(CartItemToAddDto cartItemToAddDto)
     {
         var response = await httpClient.PostAsJsonAsync("api/ShoppingCart", cartItemToAddDto);
@@ -53,6 +55,11 @@ public class ShoppingCartService : IShoppingCartService
 
         var message = await response.Content.ReadAsStringAsync();
         throw new Exception($"Http status code: {response.StatusCode} Message: {message}");
+    }
+
+    public void RaiseEventOnShoppingCartChanged(int totalAmount)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<CartItemDto> UpdateAmount(CartItemAmountUpdateDto cartItemAmountUpdateDto)
