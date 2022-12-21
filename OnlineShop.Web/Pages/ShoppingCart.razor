@@ -12,30 +12,42 @@ else if (ErrorMessage != null)
 else
 {
     <h3 class="mb-5">Корзина</h3>
-    <div class="row mb-5">
-        <div class="col-md-9">
-            @foreach (var item in ShoppingCartItems)
-            {
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <img src="@item.DishImageURL" width="300" class="img-thumbnail">
+    @if (ShoppingCartItems.Count() > 0)
+    {
+        <div class="row mb-5">
+            <div class="col-md-9">
+                @foreach (var item in ShoppingCartItems)
+                {
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <img src="@item.DishImageURL" width="300" class="img-thumbnail">
+                        </div>
+                        <div class="col-md-8">
+                            <h5>@item.DishName</h5>
+                            <div class="mb-4">@item.DishDescription</div>
+                            <span>Цена: <b>@item.Price.ToString("C")</b></span>
+                            <div>
+                                <button @onclick="() => DeleteCartItem_Click(item.Id)" class="btn btn-danger sm">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <h5>@item.DishName</h5>
-                        <div class="mb-4">@item.DishDescription</div>
-                        <span>Price: <b>@item.Price.ToString("C")</b></span>
-                    </div>
+                }
+            </div>
+            <div class="col-md-3">
+                <h5>Общая стоимость</h5>
+                <div class="mt-2">
+                    <div>Всего - </div>
+                    <a href="#" class="btn btn-success">
+                        <span class="oi oi-credit-card"></span>&nbsp; Оплатить
+                    </a>
                 </div>
-            }
-        </div>
-        <div class="col-md-3">
-            <h5>Общая стоимость</h5>
-            <div class="mt-2">
-                <div>Всего - </div>
-                <a href="#" class="btn btn-success">
-                    <span class="oi oi-credit-card"></span>&nbsp; Оплатить
-                </a>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <h4>На текущий момент у вас нет блюд в корзине</h4>
+    }
 }
